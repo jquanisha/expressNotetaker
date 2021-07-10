@@ -27,10 +27,14 @@ class Store {
         }
         return this.getNotes()
             .then((notes) => {
-                [...notes, latestNote]
+                return [...notes, latestNote]
             })
             .then((updatedNotes) => this.write(updatedNotes))
             .then(() => latestNote)
+    }
+    removeNote(id) {
+        return this.getNotes().then((notes) => notes.filter((note) => note.id !== id))
+            .then((newArray) => this.write(newArray))
     }
 
 }

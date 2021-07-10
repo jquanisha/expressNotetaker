@@ -11,13 +11,16 @@ router.get('/notes', (req, res) => {
 })
 
 router.post('/notes', (req, res) => {
-
+    store
+        .addNote(req.body)
+        .then((data) => res.json(data))
 })
 
 router.delete('/notes/:id', (req, res) => {
-
+    store
+        .removeNote(req.params.id)
+        .then(() => res.json({ ok: true }))
 })
-
 
 
 module.exports = router
